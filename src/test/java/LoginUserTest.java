@@ -1,13 +1,10 @@
 import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import org.junit.After;
 import user.User;
 import user.UserToken;
 import user.UserClient;
 import org.junit.Test;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
-import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import static org.hamcrest.Matchers.equalTo;
@@ -16,7 +13,6 @@ import static org.hamcrest.Matchers.notNullValue;
 @Epic("Авторизация пользователя")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LoginUserTest {
-    public static UserToken userAccessToken;
     public static UserToken userRefreshToken;
 
     @Test
@@ -28,7 +24,6 @@ public class LoginUserTest {
                 .assertThat().body("success", equalTo(true))
                 .assertThat().body("accessToken", notNullValue())
                 .assertThat().body("refreshToken", notNullValue());
-        userAccessToken = new UserToken(userResponse.then().extract().body().path("accessToken"));
         userRefreshToken = new UserToken(userResponse.then().extract().body().path("refreshToken"));
     }
 

@@ -1,7 +1,5 @@
 import ingredient.Ingredient;
-import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import order.Order;
@@ -84,7 +82,7 @@ public class OrderTest {
         ArrayList<Order> orders = returnedOrders.getOrders();
         ArrayList<Order> ordersOrdered = (ArrayList<Order>) orders.clone();
         ordersOrdered.sort(ORDER_COMPARATOR);
-        Assert.assertTrue(ordersOrdered.equals(orders));
+        Assert.assertEquals(ordersOrdered, orders);
     }
 
     @After
